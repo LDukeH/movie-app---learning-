@@ -12,7 +12,7 @@ function TabIcon({ focused, title, icon }: any) {
       className="flex-row gap-2 flex-1 w-full min-w-[112px] justify-center items-center min-h-16 mt-4 rounded-full overflow-hidden"
     >
       <Image source={icon} className="size-6" tintColor="#151312" />
-      <Text className="font-semibold">{title}</Text>
+      <Text className="font-semibold text-secondary">{title}</Text>
     </ImageBackground>
   ) : (
     <View className="items-center justify-center flex-1 w-full h-full mt-4 min-h-16">
@@ -36,9 +36,8 @@ export default function Layout() {
             height: 52,
             position: "absolute",
             overflow: "hidden",
-            boxSizing: "border-box",
             borderWidth: 1,
-            borderBlockColor: "#151312",
+            borderColor: "#151312",
           },
           tabBarItemStyle: {
             alignItems: "center",
