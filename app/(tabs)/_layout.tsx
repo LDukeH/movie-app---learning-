@@ -1,45 +1,94 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
+import { Tabs } from "expo-router";
+import { View, Text, ImageBackground, Image } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { images } from "@/constants/images";
+import { icons } from "@/constants/icons";
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+function TabIcon({ focused, title, icon }: any) {
+  return focused ? (
+    <ImageBackground
+      source={images.highlight}
+      className="flex-row gap-2 flex-1 w-full min-w-[112px] justify-center items-center min-h-16 mt-4 rounded-full overflow-hidden"
+    >
+      <Image source={icon} className="size-6" tintColor="#151312" />
+      <Text className="font-semibold">{title}</Text>
+    </ImageBackground>
+  ) : (
+    <View className="items-center justify-center flex-1 w-full h-full mt-4 min-h-16">
+      <Image source={icon} className="size-6" tintColor="white" />
+    </View>
+  );
+}
 
+export default function Layout() {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
+    <SafeAreaProvider>
+      <Tabs
+        screenOptions={{
+          headerShown: false,
+          animation: "shift",
+          tabBarStyle: {
+            backgroundColor: "#151312",
+            borderRadius: 50,
+            marginHorizontal: 16,
+            marginBottom: 36,
+            height: 52,
+            position: "absolute",
+            overflow: "hidden",
+            boxSizing: "border-box",
+            borderWidth: 1,
+            borderBlockColor: "#151312",
           },
-          default: {},
-        }),
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarItemStyle: {
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100%",
+            height: "100%",
+          },
         }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
+      >
+        <Tabs.Screen
+          name="index"
+          options={{
+            headerShown: false,
+            title: "",
+            tabBarIcon: ({ focused }) => (
+              <TabIcon focused={focused} title="Home" icon={icons.home} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="search"
+          options={{
+            title: "",
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <TabIcon focused={focused} title="Search" icon={icons.search} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="saved"
+          options={{
+            title: "",
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <TabIcon focused={focused} title="Saved" icon={icons.save} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="profile"
+          options={{
+            title: "",
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <TabIcon focused={focused} title="Profile" icon={icons.person} />
+            ),
+          }}
+        />
+      </Tabs>
+    </SafeAreaProvider>
   );
 }
