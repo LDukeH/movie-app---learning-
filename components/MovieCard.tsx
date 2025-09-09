@@ -23,7 +23,7 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
 
         {/* movie information */}
         <View>
-          <Text className="text-sm text-white" numberOfLines={1}>
+          <Text className="text-sm text-white font-dmsans" numberOfLines={1}>
             {title}
           </Text>
 
@@ -34,7 +34,7 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
             </Text>
           </View>
 
-          <Text className="text-xs text-gray-400">
+          <Text className="text-xs text-gray-400 font-dmsans">
             {release_date.split("-")[0]}
           </Text>
         </View>

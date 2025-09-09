@@ -1,6 +1,5 @@
 import { Tabs } from "expo-router";
 import { View, Text, ImageBackground, Image } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { images } from "@/constants/images";
 import { icons } from "@/constants/icons";
@@ -23,71 +22,69 @@ function TabIcon({ focused, title, icon }: any) {
 
 export default function Layout() {
   return (
-    <SafeAreaProvider>
-      <Tabs
-        screenOptions={{
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        animation: "shift",
+        tabBarStyle: {
+          backgroundColor: "#151312",
+          borderRadius: 50,
+          marginHorizontal: 16,
+          marginBottom: 36,
+          height: 52,
+          position: "absolute",
+          overflow: "hidden",
+          borderWidth: 1,
+          borderColor: "#151312",
+        },
+        tabBarItemStyle: {
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+          height: "100%",
+        },
+      }}
+    >
+      <Tabs.Screen
+        name="index"
+        options={{
           headerShown: false,
-          animation: "shift",
-          tabBarStyle: {
-            backgroundColor: "#151312",
-            borderRadius: 50,
-            marginHorizontal: 16,
-            marginBottom: 36,
-            height: 52,
-            position: "absolute",
-            overflow: "hidden",
-            borderWidth: 1,
-            borderColor: "#151312",
-          },
-          tabBarItemStyle: {
-            alignItems: "center",
-            justifyContent: "center",
-            width: "100%",
-            height: "100%",
-          },
+          title: "",
+          tabBarIcon: ({ focused }) => (
+            <TabIcon focused={focused} title="Home" icon={icons.home} />
+          ),
         }}
-      >
-        <Tabs.Screen
-          name="index"
-          options={{
-            headerShown: false,
-            title: "",
-            tabBarIcon: ({ focused }) => (
-              <TabIcon focused={focused} title="Home" icon={icons.home} />
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="search"
-          options={{
-            title: "",
-            headerShown: false,
-            tabBarIcon: ({ focused }) => (
-              <TabIcon focused={focused} title="Search" icon={icons.search} />
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="saved"
-          options={{
-            title: "",
-            headerShown: false,
-            tabBarIcon: ({ focused }) => (
-              <TabIcon focused={focused} title="Saved" icon={icons.save} />
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="profile"
-          options={{
-            title: "",
-            headerShown: false,
-            tabBarIcon: ({ focused }) => (
-              <TabIcon focused={focused} title="Profile" icon={icons.person} />
-            ),
-          }}
-        />
-      </Tabs>
-    </SafeAreaProvider>
+      />
+      <Tabs.Screen
+        name="search"
+        options={{
+          title: "",
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <TabIcon focused={focused} title="Search" icon={icons.search} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="saved"
+        options={{
+          title: "",
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <TabIcon focused={focused} title="Saved" icon={icons.save} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "",
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <TabIcon focused={focused} title="Profile" icon={icons.person} />
+          ),
+        }}
+      />
+    </Tabs>
   );
 }

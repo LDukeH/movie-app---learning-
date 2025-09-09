@@ -9,7 +9,7 @@ const TrendingCard = ({ movie, index }: { movie: any; index: number }) => {
   const { title, poster_url, movie_id } = movie;
   return (
     <Link href={`/movies/${movie_id.toString()}`} asChild>
-      <TouchableOpacity activeOpacity={0.7} className="relative w-32 mx-4">
+      <TouchableOpacity activeOpacity={0.7} className="relative w-32 mx-4 ">
         <Image
           source={{
             uri: poster_url,
@@ -21,7 +21,7 @@ const TrendingCard = ({ movie, index }: { movie: any; index: number }) => {
         {/* movie information */}
         <View>
           <Text
-            className="self-center mt-2 text-sm font-bold text-accent"
+            className="self-center mt-2 text-sm font-semibold text-accent font-dmsans"
             numberOfLines={1}
           >
             {title}

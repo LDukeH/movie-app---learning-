@@ -5,6 +5,7 @@ import {
   ScrollView,
   FlatList,
   ActivityIndicator,
+  TextInput,
 } from "react-native";
 import React, { useEffect } from "react";
 
@@ -61,9 +62,10 @@ const index = () => {
             <SearchBar
               placeholder="Search through 300+ movies online"
               onPress={onPress}
+              disable={true}
             />
 
-            <Text className="text-lg font-bold text-white">
+            <Text className="mt-4 text-lg font-semibold text-white font-dmsans ">
               Trending Movies
             </Text>
             <>
@@ -90,7 +92,7 @@ const index = () => {
             </>
 
             <>
-              <Text className="text-lg font-bold text-white">
+              <Text className="text-lg font-semibold text-white font-dmsans">
                 Latest movies
               </Text>
 

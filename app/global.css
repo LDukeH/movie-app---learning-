@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.container {
+  @apply flex flex-row items-center;
+}
+
+.card {
+  @apply bg-[#221F3D] p-2 rounded-md;
+}
